@@ -72,12 +72,20 @@ const textoResultado = document.querySelector(".texto-resultado");
     }
 ]
 
+
 let atual = 0;
 let perguntaAtual;
 
-function mostraPergunta() {
-    perguntaAtual = perguntas[atual];
-    caixaPerguntas.textContent = perguntaAtual.enunciado;
+function mostraAlternativas(){
+    for(const alternativa of perguntaAtual.alternativas) {
+        const botaoAlternativa = document.createElement("button");
+        botaoAlternativa.textContent = alternativa.texto;
+        botaoAlternativa.addEventListener("click", function(){
+            atual++,
+            mostraPergunta();
+        })
+        caixaAlternativas.appendChild(botaoAlternativa);
+    }
 }
 
 mostraPergunta();
